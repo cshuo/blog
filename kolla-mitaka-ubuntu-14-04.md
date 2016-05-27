@@ -160,3 +160,9 @@ openrc文件生成之后，使用以下命令可以帮你做一下openstack的�
 由于错误的出现，可能需要多次的部署，而有些错误重新部署是不会进行修正的，所以需要将整个环境进行清理:
 `$ tools/cleanup-containers`
 `$ tools/cleanup-host`
+
+## 参考资料
+- [Kolla部署文档](http://docs.openstack.org/developer/kolla/quickstart.html)
+- [Ceilometer补丁](https://review.openstack.org/#/c/300574/)
+- [Kolla Ceilometer Bug1](https://bugs.launchpad.net/kolla/+bug/1581565)
+- [Kolla Ceilometer Bug2](https://bugs.launchpad.net/kolla/+bug/1581565)
