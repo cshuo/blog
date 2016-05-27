@@ -1,4 +1,4 @@
-title: Deploy Openstack-Mitaka with Kolla in Ubuntu 14.04
+title: Deploy Openstack-Mitaka with Kolla on Ubuntu 14.04
 date: 2016-05-26 22:53:00
 category: OpenStack
 tags: openstack
