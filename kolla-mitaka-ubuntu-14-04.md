@@ -165,4 +165,4 @@ openrc文件生成之后，使用以下命令可以帮你做一下openstack的�
 - [Kolla部署文档](http://docs.openstack.org/developer/kolla/quickstart.html)
 - [Ceilometer补丁](https://review.openstack.org/#/c/300574/)
 - [Kolla Ceilometer Bug1](https://bugs.launchpad.net/kolla/+bug/1581565)
-- [Kolla Ceilometer Bug2](https://bugs.launchpad.net/kolla/+bug/1581565)
+- [Kolla Ceilometer Bug2](https://bugs.launchpad.net/kolla/+bug/1582062)
