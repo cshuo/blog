@@ -31,6 +31,15 @@ tags: vm
 - 在目标节点上恢复启动虚拟机
 - 通过网络从源节点上获取内存页
 
+### 混合拷贝技术
+根据以上介绍, 我们知道Pre-Copy适用于内存read-intensive的虚拟机热迁移, 对于write-intensive的虚拟机, 在Pre-Copy的每轮迭代中都会有大量新的内存页被修改, 导致迁移的效率低下. 对于Post-Copy则相反, 对于read-intensive的虚拟机, Post-Copy将会产生大量的缺页错, 导致虚拟机内应用性能的降低. Post-Copy更适用于内存比较大, 内存write-intensive的虚拟机热迁移.
+
+为了是热迁移更具有一般性, 通用性, 一种自然的想法是将Pre-Copy和Post-Copy结合起来.具体过程如下:
+- 采用Pre-Copy的初次迭代, 将虚拟机的全部内存页拷贝到目的主机, 与此同时, 虚拟机在源主机上继续运行;
+- 一轮拷贝结束后, 虚拟机被暂停, 其处理器状态和不可分页内存被拷贝到目的主机;
+- 在目的主机上恢复虚拟机, 开始使用Post-Copy策略继续拷贝内存页面.
+
+
 ### 存在的问题及一些优化措施
 1. 问题: 一些内存页更新的速度很快, 每次迭代都被更新, 从而每次都被重新拷贝, 造成不必要的开销.
 优化: 一种比较朴素的方法是只传输那些在上轮迭代中更新,本轮迭代中没更新的内存页. 这样可以在一定程度上减少每轮迭代中拷贝的内存页数.
@@ -43,7 +52,7 @@ tags: vm
 
 
 ### 参考资料
-[虚拟机技术漫谈](http://www.ibm.com/developerworks/cn/linux/l-cn-mgrtvm1/)
-[Live Migration of Virtual Machines](http://dl.acm.org/citation.cfm?id=1251223)
-[Post-Copy Live Migration of Virtual Machines](http://dl.acm.org/citation.cfm?id=1618528)
-[Understanding Memory Resource Management in VMware® ESX™ Server](http://www.vmware.com/content/dam/digitalmarketing/vmware/en/pdf/techpaper/perf-vsphere-memory_management.pdf)
+- [虚拟机技术漫谈](http://www.ibm.com/developerworks/cn/linux/l-cn-mgrtvm1/)
+- [Live Migration of Virtual Machines](http://dl.acm.org/citation.cfm?id=1251223)
+- [Post-Copy Live Migration of Virtual Machines](http://dl.acm.org/citation.cfm?id=1618528)
+- [Understanding Memory Resource Management in VMware® ESX™ Server](http://www.vmware.com/content/dam/digitalmarketing/vmware/en/pdf/techpaper/perf-vsphere-memory_management.pdf)
