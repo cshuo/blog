@@ -1,4 +1,4 @@
-title: 虚拟机迁移详解
+title: 虚拟机热迁移详解
 date: 2016-09-10 22:53:00
 category: VM
 tags: vm
@@ -48,7 +48,7 @@ tags: vm
 3. 问题: 延迟拷贝策略中, 目标物理机上的虚拟机在获取处理状态后就被启动, 内存访问会导致缺页错(Page fault), 然后这些页面会被请求从源主机上通过网络发送过来, 这是一个被动请求的过程(Demand Paging). 单纯的使用Demand Paging会导致整个迁移过程比较缓慢, Page fault也会对应用的性能造成一定影响.
 优化: 在Demand Paging的同时, 从源物理主机主动推送内存页到目标节点(Active pushing). 这些主动推送的内存页不包括由于缺页错而被被动要求传送的页面. 通过这样的方式, 既保证了每个内存页只被拷贝了一次, 也加快了迁移的速度. Active pushing过程中最简单的方式是按序推送或随机推送, 显然这种方式不能很好的反映内存访问模式. 一种可行的方法是根据之前缺页错的地址, 将其附近的内存页进行拷贝(内存访问一般呈现区域密集性), 这样可以提高主动推送的内存页近期被访问的概率, 从而有效减少缺页错.
 4. 问题: 预拷贝和延迟拷贝都存在一个问题, 就是在这两种情况下, 迁移过程中都会拷贝空页(Free page), 延长了迁移时间, 造成了不必要的开销.
-优化: 使用Ballooning技术, 动态的释放虚拟机的空页到虚拟机管理器(Hypervisor). [Ballooning](http://www.vmware.com/content/dam/digitalmarketing/vmware/en/pdf/techpaper/perf-vsphere-memory_management.pdf)是动态管理虚拟机内存分配的一种技术, 通常需要在guest kernel上安装一个Balloon驱动. 在一些内存页对虚拟机没用的时候, Balloon驱动可以将其回收, 返还给Hypervisor (气球膨胀); 当内存不够时, 也可以向Hypervisor请求额外的内存页(气球收缩). 通过动态的Ballooning, 可以有效减少Pre-Copy或Post-Copy过程中需要传递的内存页数.
+优化: 使用Ballooning技术, 动态的释放虚拟机的空页到虚拟机管理器(Hypervisor). [Ballooning](http://www.vmware.com/content/dam/digitalmarketing/vmware/en/pdf/techpaper/perf-vsphere-memory_management.pdf)是动态管理虚拟机内存分配的一种技术, 通常需要在guest kernel上安装一个Balloon驱动. 在一些内存页对虚拟机没用的时候, Balloon驱动可以将其回收, 返还给Hypervisor (气球膨胀); 当内存不够时, 也可以向Hypervisor请求额外的内存页(气球收缩). 通过动态的Ballooning, 空白内存可以有效减少Pre-Copy或Post-Copy过程中需要传递的内存页数.
 
 
 ### 参考资料
