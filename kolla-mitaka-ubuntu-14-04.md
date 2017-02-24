@@ -123,8 +123,8 @@ neutron_external_interface: "eth1"
 docker_registry: "$CONTROLLER_IP:4000"
 ...
 enable_ceilometer: "yes"
-enable_cinder: "yes"
 enable_mongodb: "yes"
+enable_ceph: "yes"
 ```
 
 2. 检查部署环境
