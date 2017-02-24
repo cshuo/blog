@@ -48,6 +48,7 @@ Openstack各个组件内服务进程基于AMQP实现通信，实际上真正实�
 2. 根据消息的Routing Key(比如"topic.host")，消息被路由到相应的消息队列中，然后，Topic类型的Consumer获取消息，交给对应的Worker进行进一步的任务处理。
 3. 当任务处理完毕后，一个Direct类型的Publisher被实例化，负责将处理结果发送到队列系统。
 4. 当消息被Exchage根据Routing Key(比如"msg_id")路由到对应的消息队列中去，第一步产生的Direct类型的Consumer获取消息，返回给Invoker。
+
 ![](https://raw.githubusercontent.com/cshuo/bpic/master/rpc_call.png)
 
 ### RPC Cast
