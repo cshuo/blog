@@ -16,11 +16,11 @@ tags: vm
 预拷贝策略是使用较多的策略, 迁移开始后, 在将内存状态拷贝到目的节点的同时, 源物理主机上的虚拟机仍在继续运行. 如果一个内存也在拷贝之后再次被修改了(dirtied), 那么那将会在下一轮拷贝中发送到目的节点. 整个内存拷贝是个迭代的过程. 迭代的终止条件有多种可能: 1) 剩余的内存脏页数比较少; 2) 迭代次数达到上限; 3) 内存脏页数产生速率大于拷贝速率.
 下面结合图文详解拷贝过程:
 - Init Copy: 将虚拟机的全部内存页拷贝到目的主机上, 虚拟机管理器继续监视虚拟机的内存变化;
-![](https://raw.githubusercontent.com/cshuo/resume/master/test.png)
+![](https://raw.githubusercontent.com/cshuo/bpic/master/live_mrt1.png)
 - Iterative Pre-Copy: 每次迭代中, 将被修改的内存页拷贝到目的主机上;
-![](http://od86b3e6s.bkt.clouddn.com/2.png)
+![](https://raw.githubusercontent.com/cshuo/bpic/master/live_mrt2.png)
 - Stop-and-Copy: 将源物理主机上的虚拟机暂停, CPU状态和剩余的内存脏页拷贝到目的主机上, 在目的主机上启动虚拟机.
-![](http://od86b3e6s.bkt.clouddn.com/3.png)
+![](https://raw.githubusercontent.com/cshuo/bpic/master/live_mrt3.png)
 
 ### 延迟拷贝
 与预拷贝技术不同, 延迟拷贝首先把CPU状态复制到目的主机上,在目的主机上开启虚拟机, 然后源主机主动将内存页推送到目的主机上的虚拟机中. 与此同时, 目的主机上的虚拟机运行时可能会访问到不存在页面(还未被推送), 虚拟机将请求源主机立刻将这些页面发送过来. 可以看出在延迟拷贝策略中, 每个内存页面最多只被传送一次, 降低了预拷贝中冗余拷贝的开销.
