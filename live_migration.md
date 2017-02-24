@@ -1,4 +1,4 @@
-title: 虚拟机热迁移详解
+title: VM 热迁移详解
 date: 2016-09-10 22:53:00
 category: VM
 tags: vm
