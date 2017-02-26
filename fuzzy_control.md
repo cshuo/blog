@@ -20,7 +20,7 @@ IF brake temperature IS warm AND speed IS not very fast
 比如这里“brake temperature”和"speed"都有自己对应的模糊集，如{cold, warm, hot}。输出值"brake pressure"也有自己模糊集{static, slightly increased, ...}。最常用的隶属函数是三角形隶属函数。
 
 ### 处理阶段
-将输入值映射到对应的隶属函数以及真值之后，模糊控制器将基于模糊规则推理，判断采取什么动作。模糊规则是一些列的 IF-THEN语句，如：
+将输入值映射到对应的隶属函数以及真值之后，模糊控制器将基于模糊规则推理，判断采取什么动作。模糊规则是一系列的 IF-THEN语句，如：
 ```
 IF (temperature is "cold") THEN (heater is "high")
 ```
