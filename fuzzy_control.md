@@ -134,4 +134,4 @@ output(1)是在输出值模糊集上结果隶属函数最大的值(ZE)。若使�
 使用质心法得到最终结果是：
 $$\frac{mu(1)\times output(1)+mu(2)\times output(2)+mu(3)\times output(3)+mu(4)\times output(4)}{mu(1)+mu(2)+mu(3)+mu(4)}
 =-0.5$$
-根据反模糊化隶属度表，可以得出最终的输出结果是SN。
+根据反模糊化隶属度表，可以得出最终的输出结果是SN, 即Small Negative。
