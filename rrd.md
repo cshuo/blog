@@ -4,7 +4,7 @@ category: 监控
 tags: RRD
 ---
 > 本文是对开源监控工具Ganglia使用的RRD数据库的一个简单介绍，此外还有一些有关RRDTool的基本操作。
-<!--more-->
+> <!--more-->
 
 ## RRD数据库
 RRD是Round Robin Database的缩写，是一种环形数据库，它是专门设计来存储时序数据的。每当有新的数据到来时，一般也会有一个时间戳伴随着被存储起来，这里的时间戳是epoch值。RRDTool是RRD数据库配套的一个工具，它可以安装在Unix或者Windows系统上，RRDTool提供了一系列的命令集来对RRD进行不同的操作。    
@@ -12,7 +12,7 @@ RRD是Round Robin Database的缩写，是一种环形数据库，它是专门设
 RRD数据库与其他数据库的不同:      
 
 + RRDTool既是后端工具，又是前端工具；之所以这么说，是因为作为数据库，首先RRDTool可以存储数据，此外，RRDTool也提供了一个根据数据库数据进行绘图的功能，这让它具备了前端的特性。    
-![](/img/rrd_gra.jpg)
+  ![](/img/rrd_gra.jpg)
 + 对于线性数据库，一般新的数据都被插入到数据库表的最后，所以数据库的大小随着数据的插入而不断的增长；而对于RRD数据库，其大小在创建时就已经指定。简单的说，可以把RRD数据库想象成一个环，数据都被插入到环的周边，有一个指针时钟指向新的数据要插入到的位置，当指针达到起始点时，就会覆盖原来存在的数据，这样一来，数据库的大小就固定不变了，这也是“Round Robin”的由来。     
 + 其他数据库的数据都是被提供的，而RRD数据库可以通过配置，来计算旧的数据到新的数据之间的变化，并把这些信息存储起来。      
 + 其他数据库更新的驱动是新的数据被提供，而RRD数据库的更新是按照按照预先定义的时间间隔来进行的；如果在固定的事件间隔内没有获得新的数据，那么RRDTool将会存储一个UNKNOWN值，所以一般使用RRD数据库都会有一个脚本每隔一段时间就向RRD提供一个数据。   
@@ -30,7 +30,7 @@ rrdtool create target.rrd \
 ```
 
 
-    
+​ 
 下面是相关的一些基本概念：    
 
 * DS: Data Source, 它指的是设备上被监控的变量，一个RRD数据库中可能有多个DS。其声明格式如下：
@@ -39,7 +39,7 @@ rrdtool create target.rrd \
 	每隔一个step, DS的一个新的值就会到来，然后数据库就会被更新，这个值也被叫做	PDP(Primary Data Point)，PDP的范围由min,max来制定，如果在heartbeat时间内没有	收到数据，那么该PDP就会被置为UNKNOWN。在上面的例子中，每隔300s就会产生一个新的	PDP。
 
 * DST: Data Source Type, 指的是DS的类型，可以是COUNTER, DERIVE, ABSOLUTE, GAUGE，详细解释如下表：      
-![](/img/rrd_dst.png)
+  ![](/img/rrd_dst.png)
 * CF: Consolidation Function, 是指合并数据的方式，可选的有AVERAGE, MAX, MIN, LAST。
 * RRA: Round Robin Archive, 是对采集到的数据以某种方式(CF)的归档。声明格式如下
 > RRA:CF:xff:step:rows    

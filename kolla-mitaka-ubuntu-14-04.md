@@ -1,6 +1,6 @@
 title: Deploy Openstack-Mitaka with Kolla on Ubuntu 14.04
 date: 2016-05-26 22:53:00
-category: OpenStack
+category: openstack
 tags: openstack
 ---
 > 在Kolla之前部署过Openstack的都知道这是一件多么繁琐的任务，不过熟悉Chef或Puppet的人可能说完全可以通过这些工具自动化的部署，但是对于没接触过这些工具的人来说，使用它们来编写Openstack自动部署脚本同样令人头疼；正是在这样的大背景下，Kolla横空出世，其宗旨是:`"to provide production-ready containers and deployment tools for operating OpenStack clouds"`.使用Kolla,部署Openstack可以说是傻瓜式的操作体验，下面来介绍基于ubuntu 14.04, 使用Mitaka版本Kolla进行多节点Openstack部署的详细步骤.

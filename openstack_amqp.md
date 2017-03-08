@@ -1,5 +1,5 @@
 title: Openstack源码解读先导篇--AMQP
-category: Openstack
+category: openstack
 author: cshuo
 date: 2017-02-24
 tags: openstack
