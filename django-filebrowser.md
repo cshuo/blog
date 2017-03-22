@@ -1,4 +1,5 @@
 title: django1.8 服务器目录管理 -- grappelli + filebrowser
+date: 2015-06-23
 tags: django
 ---
 
