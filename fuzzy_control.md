@@ -1,7 +1,7 @@
 title: Fuzzy Control - 模糊控制
 category: Control Theory
 author: cshuo
-date: 2017-02-26
+date: 2017-02-25
 tags: Fuzzy
 
 ---
