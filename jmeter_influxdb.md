@@ -1,7 +1,7 @@
 title: 使用InfluxDB && Grafana 对Jmeter实时数据持久化及展示
 category: monitoring
 author: cshuo
-date: 2017-02-26
+date: 2016-12-26
 tags: monitoring,load testing
 
 ---
@@ -21,7 +21,7 @@ tags: monitoring,load testing
 思路就是对$jmeter/lib/ext/ApacheJmeter_core.jar$ 进行修改，每当它将结果输出到控制台时，同时也让它把数据发送到InfluxDB数据库；这样我们就不需要创建单独的Listener来获取对应的性能数据，也省掉了上述metric的计算过程。
 
 ### Jar包及Grafana模板配置
-[TAG-Influx-Grafana.zip](http://www.testautomationguru.com/download/640/)
+[**TAG-Influx-Grafana.zip**](http://www.testautomationguru.com/download/640/)
 * ApacheJMeter_core.jar: 两个版本对应Jmeter的V2.13和V3.0，选取正确的版本替换lib/ext/里的官方jar包；此外需要对jemter的user.properties进行修改，见一下配置。
 * 两个Grafana的 dashboard json 分别对应压测的sample数据和summary数据, 从Grafana的Dashboard面板导入。
 
