@@ -11,7 +11,7 @@ tags: monitoring,load testing
 
 ### 主要思路
 使用Jmeter的Non-GUI模式运行一个测试，对应的输出如下所示：
-![](https://raw.githubusercontent.com/cshuo/bpic/master/amqp.png)
+![](https://raw.githubusercontent.com/cshuo/bpic/master/jmeter_run.png)
 我们想要持久化的就是图中那些metric:
 * Avg, min, max Rt
 * TP
