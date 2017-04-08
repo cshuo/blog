@@ -67,3 +67,7 @@ summariser.influx.socket.timeout=5000
 * 从Grafana的dashboard导入上面下载的配置文件(json格式)；
 配置正确的话可以看到如下的Dashboard:
 ![](https://raw.githubusercontent.com/cshuo/bpic/master/grafana.png)
+
+
+#### 参考
+[jmeter-real-time-results-influxdb-grafana](http://www.testautomationguru.com/jmeter-real-time-results-influxdb-grafana/)
